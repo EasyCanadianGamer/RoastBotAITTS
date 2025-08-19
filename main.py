@@ -2,10 +2,28 @@ import json
 import os
 import time
 import pygetwindow as gw
-from plyer import notification
+import platform
+import subprocess
 import text_to_speech
 import mc  # our new module
 from collections import deque
+
+# -------------------
+# Cross-platform notification helper
+# -------------------
+def notify(title, message):
+    if platform.system() == "Darwin":  # macOS
+        subprocess.run([
+            "osascript",
+            "-e",
+            f'display notification "{message}" with title "{title}"'
+        ])
+    else:
+        try:
+            from plyer import notification
+            notification.notify(title=title, message=message, timeout=5)
+        except Exception as e:
+            print(f"Notification failed: {e}")
 
 # -------------------
 # Load settings
@@ -53,7 +71,11 @@ def build_system_message() -> str:
 def get_active_window():
     try:
         window = gw.getActiveWindow()
-        return window.title if window else None
+        if window:
+            # On macOS, window.title might be a method
+            title = window.title() if callable(window.title) else window.title
+            return str(title)  # ensure string on all platforms
+        return None
     except:
         return None
 
@@ -83,8 +105,9 @@ while True:
             user_message = f"User is currently doing: {target}"
             roast = ai.generate_roast(user_message, system_message=system_message)
             safe_roast = roast[:256]
-            notification.notify(title="AI Roast", message=safe_roast, timeout=5)
-            text_to_speech.text_to_speech(roast, target)
+
+            notify("AI Roast", safe_roast)
+            text_to_speech.text_to_speech(roast, str(target))
 
     elif monitor_mode == "minecraft":
         new_lines = get_minecraft_log_tail()
@@ -99,7 +122,7 @@ while True:
                     roast = ai.generate_roast(user_message, system_message=system_message)
                     safe_roast = roast[:256]
 
-                    notification.notify(title="AI Roast", message=safe_roast, timeout=5)
-                    text_to_speech.text_to_speech(roast, action_type)
+                    notify("AI Roast", safe_roast)
+                    text_to_speech.text_to_speech(roast, str(action_type))
 
     time.sleep(2)

@@ -1,11 +1,11 @@
 {
-  "AI_BACKEND": "openai",
-  "profile": "asuka.json",
+  "AI_BACKEND": "ollama",
+  "profile": "ahmad.json",
   "tts": {
     "model_id": "sonic-2",
     "voice": {
       "mode": "id",
-      "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
+      "id": "fd098a10-ba9e-445e-b144-be2a9f3dac02"
     },
     "output_format": {
       "container": "mp3",

@@ -16,7 +16,7 @@ def generate_roast(user_message: str, system_message: str = None) -> str:
         system_message = "You are a sarcastic AI that roasts users with lots of swearing."
 
     payload = {
-        "model": "Godmoded/llama3-lexi-uncensored:latest",
+        "model": "llama3.2:latest",
         "messages": [
             {"role": "system", "content": system_message},
             {"role": "user", "content": user_message}
