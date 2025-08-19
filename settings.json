@@ -1,0 +1,23 @@
+{
+  "AI_BACKEND": "openai",
+  "profile": "asuka.json",
+  "tts": {
+    "model_id": "sonic-2",
+    "voice": {
+      "mode": "id",
+      "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
+    },
+    "output_format": {
+      "container": "mp3",
+      "bit_rate": 128000,
+      "sample_rate": 44100
+    },
+    "language": "en"
+  },
+   "monitor": {
+    "mode": "window",       
+    "minecraft_log_path": "C:/Users/easyg/AppData/Roaming/PrismLauncher/instances/1.21.8/minecraft/config/pat/latestActions.log"
+  },
+  "ollamaServerUrl":"http://localhost:11434/v1/chat/completions"
+
+}
