@@ -1,18 +1,28 @@
 {
-  "AI_BACKEND": "ollama",
-  "profile": "ahmad.json",
+  "AI_BACKEND": "openai",
+  "profile": "asuka.json",
+  "TTS_BACKEND": "coqui",  
+
   "tts": {
-    "model_id": "sonic-2",
-    "voice": {
-      "mode": "id",
-      "id": "fd098a10-ba9e-445e-b144-be2a9f3dac02"
+    "cartesia": {
+      "model_id": "sonic-2",
+      "voice": {
+        "mode": "id",
+        "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
+      },
+      "output_format": {
+        "container": "mp3",
+        "bit_rate": 128000,
+        "sample_rate": 44100
+      },
+      "language": "en"  
     },
-    "output_format": {
-      "container": "mp3",
-      "bit_rate": 128000,
-      "sample_rate": 44100
-    },
-    "language": "en"
+    "coqui": {
+      "model": "tts_models/multilingual/multi-dataset/xtts_v2",  
+      "speaker": "Asuka", 
+      "output_path": "output.wav",
+       "language":"en"
+    }
   },
    "monitor": {
     "mode": "window",       

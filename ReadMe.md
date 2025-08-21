@@ -7,6 +7,7 @@ This bot roasts you on what ever application you are on so if I am on vscode its
 ### Windows
 
 * git clone this repo
+* Set up a python virutal enviroment in python version 3.11 or 3.10
 * pip install -r requirements.txt
 * rename keys.example.json to keys.json and add your api keys
 * python main.py
