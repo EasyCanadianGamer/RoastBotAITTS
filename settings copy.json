@@ -12,22 +12,11 @@
         "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
       },
       "output_format": {
-        "container": "mp3",
+        "container": "raw ",
         "bit_rate": 128000,
         "sample_rate": 44100
       },
       "language": "en"  
-    },
-"cartesia-ws": {
-      // Same settings as cartesia — reused for WebSocket
-      // WebSocket overrides output to raw PCM internally for speed
-      "model_id": "sonic-3",
-      "voice": {
-        "mode": "id",
-        "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
-      },
-      "language": "en",
-      "sample_rate": 24000  // Recommended for streaming (lower latency)
     },
     "coqui": {
       "model": "tts_models/multilingual/multi-dataset/xtts_v2",  
@@ -35,7 +24,6 @@
       "output_path": "output.wav",
        "language":"en"
     }
-    
   },
    "monitor": {
     "mode": "window",       
