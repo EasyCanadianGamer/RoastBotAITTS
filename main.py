@@ -35,9 +35,10 @@ AI_BACKEND = settings["AI_BACKEND"]
 profile_name = settings["profile"]
 
 monitor_mode = settings.get("monitor", {}).get("mode", "window")
-minecraft_log_path = settings.get("monitor", {}).get("minecraft_log_path", "")
+minecraft_log_path = settings.get("monitor", {}).get("minecraft_log_path", "minecraft")
 last_content = ""
 last_window = None
+user = settings["user"]
 
 # -------------------
 # Load profile
@@ -46,13 +47,15 @@ profile_path = os.path.join("profiles", profile_name)
 with open(profile_path, "r", encoding="utf-8") as f:
     profile = json.load(f)
 
-# -------------------
+
+
 # Choose AI backend
-# -------------------
 if AI_BACKEND == "ollama":
     from models import ollama as ai
 elif AI_BACKEND == "openai":
     from models import open_AI as ai
+elif AI_BACKEND == "xai":
+    from models import xai as ai
 elif AI_BACKEND == "local":
     from models import local as ai
 else:
@@ -102,7 +105,7 @@ while True:
         if target and target != last_window:
             last_window = target
             system_message = build_system_message()
-            user_message = f"User is currently doing: {target}"
+            user_message = f"{user} is currently doing: {target}"
             roast = ai.generate_roast(user_message, system_message=system_message)
             safe_roast = roast[:256]
 
@@ -118,7 +121,7 @@ while True:
                 if count >= 1 and action_type not in recent_actions:
                     recent_actions.append(action_type)
                     system_message = build_system_message()
-                    user_message = f"User performed '{action_type}' {count} times recently."
+                    user_message = f"{user} performed '{action_type}' {count} times recently."
                     roast = ai.generate_roast(user_message, system_message=system_message)
                     safe_roast = roast[:256]
 
