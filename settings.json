@@ -1,14 +1,14 @@
 {
   "AI_BACKEND": "openai",
-  "profile": "asuka.json",
-  "TTS_BACKEND": "coqui",  
+  "profile": "shaggy.json",
+  "TTS_BACKEND": "cartesia",  
 
   "tts": {
     "cartesia": {
       "model_id": "sonic-2",
       "voice": {
         "mode": "id",
-        "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
+        "id": "c9af5245-f36b-46f5-b5b6-af6262907b55"
       },
       "output_format": {
         "container": "mp3",

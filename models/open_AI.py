@@ -1,7 +1,7 @@
 from openai import OpenAI
 import json
 
-# Load OpenAI key from key.json
+# Load OpenAI key from keys.json
 with open("keys.json", "r") as f:
     keys = json.load(f)
 
@@ -11,12 +11,14 @@ def generate_roast(prompt: str, system_message: str = None) -> str:
     if system_message is None:
         system_message = "You are a sarcastic AI that roasts users with lots of swearing."
 
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model="gpt-4.1-mini",
-        messages=[
+        input=[
             {"role": "system", "content": system_message},
             {"role": "user", "content": prompt}
         ],
-        max_tokens=100
+        max_output_tokens=150
     )
-    return response.choices[0].message.content.strip()
+
+    # Extract final message
+    return response.output_text.strip()
