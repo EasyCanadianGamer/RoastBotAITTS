@@ -1,7 +1,7 @@
 {
-  "AI_BACKEND": "xai",
+  "AI_BACKEND": "openai",
   "profile": "asuka.json",
-  "TTS_BACKEND": "cartesia",  
+  "TTS_BACKEND": "cartesia",
   "user": "Eyad",
 
   "tts": {
@@ -16,31 +16,30 @@
         "bit_rate": 128000,
         "sample_rate": 44100
       },
-      "language": "en"  
+      "language": "en",
+      "pronunciation_items": [
+        { "text": "Eyad", "pronunciation": "Ee-yahd" }
+      ]
     },
-"cartesia-ws": {
-      // Same settings as cartesia — reused for WebSocket
-      // WebSocket overrides output to raw PCM internally for speed
+    "cartesia-ws": {
       "model_id": "sonic-3",
       "voice": {
         "mode": "id",
         "id": "3c42d0d1-6014-48e0-a2ca-f8d049619227"
       },
       "language": "en",
-      "sample_rate": 24000  // Recommended for streaming (lower latency)
+      "sample_rate": 24000
     },
     "coqui": {
-      "model": "tts_models/multilingual/multi-dataset/xtts_v2",  
-      "speaker": "Asuka", 
+      "model": "tts_models/multilingual/multi-dataset/xtts_v2",
+      "speaker": "Asuka",
       "output_path": "output.wav",
-       "language":"en"
+      "language": "en"
     }
-    
   },
-   "monitor": {
-    "mode": "window",       
+  "monitor": {
+    "mode": "window",
     "minecraft_log_path": "C:/Users/easyg/Desktop/Moddint/PAT/run/config/pat/latestActions.log"
-  },  
-  "ollamaServerUrl":"http://localhost:11434/v1/chat/completions"
-
+  },
+  "ollamaServerUrl": "http://localhost:11434/v1/chat/completions"
 }

@@ -1,6 +1,6 @@
 # requests
 # plyer
-# PyGetWindow
+# PyGetWindow; sys_platform == "win32" or sys_platform == "darwin"
 # pydub
 # pywin32; sys_platform == "win32"
 # pyobjc; sys_platform == "darwin"
@@ -53,12 +53,13 @@
 
 requests
 plyer
-PyGetWindow
+PyGetWindow; sys_platform == "win32" or sys_platform == "darwin"
 pydub
 pywin32; sys_platform == "win32"
 pyobjc; sys_platform == "darwin"
 
 openai>=1.0.0
+ollama
 
 numpy==1.26.4
 cython>=3.0.0
@@ -92,4 +93,4 @@ huggingface-hub==0.17.3
 
 networkx<3.0.0,>=2.5.0
 
-TTS==0.22.0
+coqui-tts

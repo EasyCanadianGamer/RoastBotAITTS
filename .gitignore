@@ -1,5 +1,5 @@
 keys.json
-.venv
+/venv
 roasts
 __pycache__/
 model/__pycache__/

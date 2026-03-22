@@ -27,6 +27,20 @@ CARTESIA_HEADERS = {
     "Content-Type": "application/json"
 }
 
+CARTESIA_PRON_DICT_ID = None
+_pron_items = tts_settings.get("cartesia", {}).get("pronunciation_items", [])
+if _pron_items and tts_backend == "cartesia":
+    _resp = requests.post(
+        "https://api.cartesia.ai/pronunciation-dicts/",
+        headers=CARTESIA_HEADERS,
+        json={"name": "roastbot-dict", "items": _pron_items}
+    )
+    if _resp.status_code in (200, 201):
+        CARTESIA_PRON_DICT_ID = _resp.json().get("id")
+        print(f"Pronunciation dict created: {CARTESIA_PRON_DICT_ID}")
+    else:
+        print("Warning: could not create pronunciation dict:", _resp.text)
+
 def text_to_speech(text, app_name):
     os.makedirs("roasts", exist_ok=True)
 
@@ -45,6 +59,8 @@ def text_to_speech(text, app_name):
             "output_format": tts_settings["cartesia"]["output_format"],
             "language": tts_settings["cartesia"]["language"]
         }
+        if CARTESIA_PRON_DICT_ID:
+            payload["pronunciation_dict_id"] = CARTESIA_PRON_DICT_ID
 
         response = requests.post(CARTESIA_URL, headers=CARTESIA_HEADERS, json=payload)
 
